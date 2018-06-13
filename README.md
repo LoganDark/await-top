@@ -77,7 +77,7 @@ console.log (
 Hello, World! (exports)
 ```
 
-In fact, that exact code is used for `npm test`. Note that the `exports` is printed *after* awaiting the filesystem call.
+In fact, that exact code is used for `npm test`. Note that the `exports` are printed *after* awaiting the filesystem call, because the Promise does not resolve until after the function has executed.
 
 ## Important differences
 
