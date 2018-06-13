@@ -88,7 +88,7 @@ There is some important differences about `await-top` that make it different fro
   The recommended way to use `await-top`, however, is:
 
   ```javascript
-require = require('await-top')
+  require = require('await-top')
   ```
 - You must pass `module` to `await-top`'s `require`. This is done to make sure the module resolves to a `.js` file so nothing unexpected happens, such as the `_extensions` function never getting called and the next module imported getting async instead, screwing up the system.
 - `await-top`'s `require` returns a `Promise`. You can use `.then()` or `await` it (inside a real async function).
