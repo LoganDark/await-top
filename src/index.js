@@ -1,6 +1,7 @@
 const Module = require ( 'module' ).Module
 const _path = require ( 'path' )
 const fs = require ( 'fs' )
+const cache = {}
 
 module.exports = function require (
 	path,
@@ -10,15 +11,19 @@ module.exports = function require (
 		throw new TypeError ( 'await-top is installed, please pass "module" to require()' )
 	}
 
-	const filename = _path.extname (
-		Module._resolveFilename (
-			path,
-			parent,
-			false
-		)
+	const filename = Module._resolveFilename (
+		path,
+		parent,
+		false
 	)
 
-	if ( filename !== '.js' ) {
+	if ( cache.hasOwnProperty ( filename ) ) {
+		return cache[ filename ]
+	}
+
+	const extname = _path.extname ( filename )
+
+	if ( extname !== '.js' ) {
 		throw new TypeError ( '"filename" must have the extension ".js"' )
 	}
 
@@ -65,7 +70,7 @@ module.exports = function require (
 		false
 	)
 
-	return ( async () => {
+	return cache[ filename ] = ( async () => {
 		await compiled
 
 		return childModule.exports
