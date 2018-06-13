@@ -1,6 +1,6 @@
 {
-	"name" : "nawait",
-	"version" : "1.0.1",
+	"name" : "await-top",
+	"version" : "1.0.2",
 	"description" : "Allows top-level await",
 	"main" : "src/index.js",
 	"scripts" : {
